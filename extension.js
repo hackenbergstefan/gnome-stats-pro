@@ -486,10 +486,10 @@ const Indicator = new Lang.Class({
 
         let [stageX, stageY] = this.actor.get_transformed_position();
 
-	    let itemWidth = this.actor.allocation.x2 - this.actor.allocation.x1;
+      let itemWidth = this.actor.allocation.x2 - this.actor.allocation.x1;
         let itemHeight = this.actor.allocation.y2 - this.actor.allocation.y1;
 
-	    let labelWidth = this.dropdown.width;
+      let labelWidth = this.dropdown.width;
         let labelHeight = this.dropdown.height;
         let xOffset = Math.floor((itemWidth - labelWidth) / 2);
 
@@ -616,20 +616,6 @@ const Indicator = new Lang.Class({
             this.resized = true;
         }
 
-        //draw the background grid
-        let color = new Clutter.Color(this.gridColor);
-        let gridOffset = Math.floor(height / (INDICATOR_NUM_GRID_LINES + 2));
-        for (let i = 0; i <= INDICATOR_NUM_GRID_LINES + 2; ++i) {
-            //cr.moveTo(0, i * gridOffset + .5);
-            //cr.lineTo(width, i * gridOffset + .5);
-            cr.moveTo(0, i * gridOffset);
-            cr.lineTo(width, i * gridOffset);
-        }
-        Clutter.cairo_set_source_color(cr, color);
-        cr.setLineWidth(1);
-        cr.setDash([2,1], 0);
-        cr.stroke();
-
         let renderStats = this.renderStats;
 
         // Make sure we don't have more sample points than pixels
@@ -681,7 +667,7 @@ const CpuIndicator = new Lang.Class({
 
     _init: function() {
         this.parent({
-            updateInterval: 250,
+            updateInterval: 500,
             decay: 0.2
         });
 
@@ -1228,17 +1214,17 @@ const NetworkIndicator = new Lang.Class({
     }
 });
 
-const INDICATORS = [CpuIndicator, MemoryIndicator, SwapIndicator, NetworkIndicator];
+const INDICATORS = [CpuIndicator];
 
 const Extension = new Lang.Class({
     Name: 'GnomeStatsPro.Extension',
 
     _init: function() {
-	      Convenience.initTranslations();
+        Convenience.initTranslations();
 
-	      this._showPopupTimeoutId = 0;
-	      this._resetHoverTimeoutId = 0;
-	      this._popupShowing = false;
+        this._showPopupTimeoutId = 0;
+        this._resetHoverTimeoutId = 0;
+        this._popupShowing = false;
 
           this._createIndicators();
     },
@@ -1294,14 +1280,14 @@ const Extension = new Lang.Class({
     hide: function() { this.disable(); },
 
     destroy: function() {
-	    this._indicators.forEach(function(i) { i.destroy(); });
+      this._indicators.forEach(function(i) { i.destroy(); });
 
         Main.panel._rightBox.remove_child(this._boxHolder);
 
         this._boxHolder.remove_child(this._box);
 
-	    this._box.destroy();
-	    this._boxHolder.destroy();
+      this._box.destroy();
+      this._boxHolder.destroy();
     },
 
     _onHover: function (item) {

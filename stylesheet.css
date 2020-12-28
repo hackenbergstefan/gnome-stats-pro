@@ -16,7 +16,7 @@
 
     grid-color: #575757;
 
-    cpu-color: rgb(0,190,240);
+    cpu-color: rgba(255, 255, 255, 100);
     cpu-total-color: rgb(0,154,62);
     cpu-user-color: rgb(69,154,0);
     cpu-sys-color: rgb(255,253,81);
@@ -45,13 +45,11 @@
 }
 
 .gsp-indicator {
-    background-color: #1e1e1e;
+    background-color: #1e1e1e00;
     border-radius: 2px;
     width: 8px;
 
-    grid-color: #575757;
-
-    cpu-color: rgb(0,190,240);
+    cpu-color: rgba(255, 255, 255, 100);
     cpu-total-color: rgb(0,154,62);
     cpu-user-color: rgb(69,154,0);
     cpu-sys-color: rgb(255,253,81);
